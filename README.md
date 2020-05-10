@@ -42,13 +42,10 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
     QuillVideoWatch
   } from 'quill-video-image-module/quill-video-module'
 
-  import ImageResize from 'quill-image-resize-module'
-
   // 引入video模块并注册
   import video from 'quill-video-image-module/video'
   Quill.register(video, true)
 
-  Quill.register('modules/ImageResize', ImageResize)
   Quill.register('modules/ImageExtend', ImageExtend)
   Quill.register('modules/VideoExtend', VideoExtend)
   export default {
@@ -61,7 +58,6 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
         // 富文本框参数设置
         editorOption: {
           modules: {
-            ImageResize: {},
             ImageExtend: {
               loading: true, // 可选参数 是否显示上传进度和提示语
               name: 'img', // 图片参数名
