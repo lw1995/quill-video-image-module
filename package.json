@@ -1,11 +1,22 @@
 {
-  "name": "quill-video-image-module",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+	"name": "quill-video-image-module",
+	"version": "1.0.4",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://gitee.com/liwei1119/quill-video-image-module.git"
+	},
+	"keywords": [
+		"quill",
+		"quilljs",
+		"video",
+		"image"
+	],
+	"author": "",
+	"license": "MIT"
+	
 }

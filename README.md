@@ -1,7 +1,7 @@
 # quill-video-image-module
 
 #### 介绍
-quill视频上传，图片上传到服务器模块，用video标签替换iframe
+quill整合视频上传，图片上传到服务器模块，用video标签替换iframe，中文提示框，中文描述
 
 #### 软件架构
 软件架构说明
@@ -18,7 +18,7 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
 ```javascript
 <template>
   <div class="createArticle">
-    <quill-editor class="ql-editor" v-model="content" ref="myQuillEditor" :options="editorOption"></quill-editor>
+    <quill-editor class="ql-editor" v-model="content" :options="editorOption"></quill-editor>
   </div>
 </template>
 
@@ -31,7 +31,8 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
     Quill
   } from 'vue-quill-editor';
   import {
-    container
+    container,
+    addQuillTitle
   } from 'quill-video-image-module';
   import {
     ImageExtend,
@@ -42,10 +43,13 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
     QuillVideoWatch
   } from 'quill-video-image-module/quill-video-module'
 
+  import ImageResize from 'quill-image-resize-module'
+
   // 引入video模块并注册
   import video from 'quill-video-image-module/video'
   Quill.register(video, true)
 
+  Quill.register('modules/ImageResize', ImageResize)
   Quill.register('modules/ImageExtend', ImageExtend)
   Quill.register('modules/VideoExtend', VideoExtend)
   export default {
@@ -58,6 +62,7 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
         // 富文本框参数设置
         editorOption: {
           modules: {
+            ImageResize: {},
             ImageExtend: {
               loading: true, // 可选参数 是否显示上传进度和提示语
               name: 'img', // 图片参数名
@@ -114,6 +119,9 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
     methods: {},
     created() {
 
+    },
+    mounted() {
+      addQuillTitle();
     }
   };
 </script>
@@ -136,94 +144,5 @@ quill视频上传，图片上传到服务器模块，用video标签替换iframe
     top: 50%;
   }
 
-  /* 富文本汉化 */
-  .ql-tooltip {
-    left: 50% !important;
-  }
-
-  .ql-snow .ql-tooltip[data-mode='link']::before {
-    content: '请输入链接地址:';
-  }
-
-  .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
-    border-right: 0px;
-    content: '保存';
-    padding-right: 0px;
-  }
-
-  .ql-snow .ql-tooltip[data-mode='video']::before {
-    content: '请输入视频地址:';
-  }
-
-  .ql-snow .ql-picker.ql-size .ql-picker-label::before,
-  .ql-snow .ql-picker.ql-size .ql-picker-item::before {
-    content: '14px';
-  }
-
-  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='small']::before,
-  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='small']::before {
-    content: '10px';
-  }
-
-  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='large']::before,
-  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='large']::before {
-    content: '18px';
-  }
-
-  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='huge']::before,
-  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='huge']::before {
-    content: '32px';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item::before {
-    content: '文本';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='1']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='1']::before {
-    content: '标题1';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='2']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='2']::before {
-    content: '标题2';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='3']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='3']::before {
-    content: '标题3';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='4']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='4']::before {
-    content: '标题4';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='5']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='5']::before {
-    content: '标题5';
-  }
-
-  .ql-snow .ql-picker.ql-header .ql-picker-label[data-value='6']::before,
-  .ql-snow .ql-picker.ql-header .ql-picker-item[data-value='6']::before {
-    content: '标题6';
-  }
-
-  .ql-snow .ql-picker.ql-font .ql-picker-label::before,
-  .ql-snow .ql-picker.ql-font .ql-picker-item::before {
-    content: '标准字体';
-  }
-
-  .ql-snow .ql-picker.ql-font .ql-picker-label[data-value='serif']::before,
-  .ql-snow .ql-picker.ql-font .ql-picker-item[data-value='serif']::before {
-    content: '衬线字体';
-  }
-
-  .ql-snow .ql-picker.ql-font .ql-picker-label[data-value='monospace']::before,
-  .ql-snow .ql-picker.ql-font .ql-picker-item[data-value='monospace']::before {
-    content: '等宽字体';
-  }
 </style>
 ```
-
