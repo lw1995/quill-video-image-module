@@ -1,6 +1,6 @@
 {
 	"name": "quill-video-image-module",
-	"version": "1.0.4",
+	"version": "1.0.6",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://gitee.com/liwei1119/quill-video-image-module.git"
+		"url": "git+https://github.com/lw1995/quill-video-image-module"
 	},
 	"keywords": [
 		"quill",

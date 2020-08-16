@@ -37,11 +37,11 @@ quill整合视频上传，图片上传到服务器模块，用video标签替换i
   import {
     ImageExtend,
     QuillWatch
-  } from 'quill-video-image-module/quill-image-module';
+  } from 'quill-video-image-module';
   import {
     VideoExtend,
     QuillVideoWatch
-  } from 'quill-video-image-module/quill-video-module'
+  } from 'quill-video-image-module'
 
   import ImageResize from 'quill-image-resize-module'
 
@@ -139,14 +139,6 @@ quill整合视频上传，图片上传到服务器模块，用video标签替换i
 
   .ql-editor {
     min-height: 800px;
-  }
-
-  /* 解决粘贴后光标会自动弹到文档的初始位置 */
-  .ql-clipboard {
-    position: fixed;
-    display: none;
-    left: 50%;
-    top: 50%;
   }
 </style>
 ```
